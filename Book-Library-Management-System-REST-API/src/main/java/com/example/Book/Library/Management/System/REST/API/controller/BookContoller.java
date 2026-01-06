@@ -28,9 +28,9 @@ public class BookContoller {
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
+    public ResponseEntity<List<Book>> getAllBooksInLibrary() {
 
-        List<Book> bookList = bookService.gettingAllBooks();
+        List<Book> bookList = bookService.getAllBooks();
         return new ResponseEntity<>(bookList, HttpStatus.OK);
     }
 
@@ -58,7 +58,7 @@ public class BookContoller {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteAllBooks(){
+    public ResponseEntity<String> deleteAllBooksInLibarary(){
         if(bookService.deleteAllBooks()){
             return new ResponseEntity<>("All books deleted", HttpStatus.OK);
         }

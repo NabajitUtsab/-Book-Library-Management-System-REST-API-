@@ -19,7 +19,7 @@ public class BookService {
 
 
 
-    public List<Book> gettingAllBooks() {
+    public List<Book> getAllBooks() {
         return bookRepo.findAll();
     }
 
