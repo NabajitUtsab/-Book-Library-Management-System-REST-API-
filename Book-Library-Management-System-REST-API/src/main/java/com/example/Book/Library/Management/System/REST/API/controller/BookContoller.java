@@ -41,10 +41,30 @@ public class BookContoller {
                 orElse(ResponseEntity.notFound().build());
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
-//        Book book1 = bookService.updateBook(book)
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
+        return bookService.updateBookById(id,book).
+                map(ResponseEntity::ok).
+                orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long id){
+        if(bookService.deleteBookById(id)){
+            return new ResponseEntity<>("Book deleted", HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("Book not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllBooks(){
+        if(bookService.deleteAllBooks()){
+            return new ResponseEntity<>("All books deleted", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("There are no books to delete  ", HttpStatus.NOT_FOUND);
+    }
+
 
 
 
